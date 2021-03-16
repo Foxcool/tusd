@@ -924,7 +924,7 @@ func (store S3Store) listAllParts(ctx context.Context, id string) (parts []*s3.P
 
 		parts = append(parts, (*listPtr).Parts...)
 
-		if listPtr.IsTruncated != nil && *listPtr.IsTruncated {
+		if listPtr.IsTruncated != nil && *listPtr.IsTruncated && listPtr.NextPartNumberMarker != nil {
 			partMarker = *listPtr.NextPartNumberMarker
 		} else {
 			break
